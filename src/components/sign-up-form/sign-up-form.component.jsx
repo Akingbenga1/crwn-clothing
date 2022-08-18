@@ -3,6 +3,8 @@ import {createAuthUserWithEmailAndPassword, createUserDocumentFromAuth} from "..
 import FormInput from "../form-input/form-input.component";
 import Button from "../button/button.component";
 
+import "./sign-up.styles.scss";
+
 
 const SignUpForm = () =>
 {
@@ -46,8 +48,6 @@ const SignUpForm = () =>
             await createUserDocumentFromAuth(user, {displayName })
 
             resetFormFields();
-
-
         }
         catch(error)
         {
@@ -66,9 +66,8 @@ const SignUpForm = () =>
 
     };
 
-
     return (
-        <div className="">
+        <div className="sign-up-container">
             <h2> Don't have an account? </h2>
             <span> Sign up with your email and password.</span>
             <form onSubmit={handleSubmit}>
@@ -103,11 +102,11 @@ const SignUpForm = () =>
                     name='confirmPassword'
                     value={confirmPassword}
                     required />
-                <button type='submit' >
-                    Sign Up
-                </button>
                 <Button type='submit' >
                     Sign Up
+                </Button>
+                <Button buttonType='google' type='submit' >
+                    Sign Up with Google
                 </Button>
             </form>
 
