@@ -1,15 +1,18 @@
 
-import { useContext } from 'react';
-import {ReactComponent as ShoppingIcon} from '../../assets/shopping-bag.svg'
-import { CartContext } from '../../contexts/cart.context';
-import  './cart-icon.styles.scss';
+import  './cart-item.styles.scss';
 const CartItem = ({cartItem}) =>
 {
-    const {name, quantity } =  cartItem;
+    const {name, imageUrl , quantity,  price} =  cartItem;
 
     return (
-                <div >
-                    <h2> {name}</h2>
+                <div className='cart-item-container' >
+                    <img src={imageUrl} alt={`${name}`} />
+                    <div className='item-details'>
+                        <span className='name'>
+                            {name}
+                        </span>
+                        <span> {quantity} x  ${price} </span>
+                    </div>
                 </div>
     )
 }
