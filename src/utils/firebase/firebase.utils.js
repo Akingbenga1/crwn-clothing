@@ -64,7 +64,7 @@ export const addCollectionAndDocuments = async (collectionKey, objectsToAdd) => 
 
         await batch.commit();
 
-        console.log("Done");
+        // console.log("Done");
 }
 
 export const getCategoriesAndDocuments = async () =>
@@ -86,10 +86,10 @@ export const createUserDocumentFromAuth = async ( userAuth, additionalDocument =
           if(!userAuth) return;
           const     userDocRef = doc(db, 'users', userAuth.uid );
 
-          console.log(userDocRef);
+          // console.log(userDocRef);
 
           const userSnapShot = await getDoc(userDocRef);
-          console.log(userSnapShot);
+          // console.log(userSnapShot);
 
           if(!userSnapShot.exists())
           {
@@ -108,7 +108,9 @@ export const createUserDocumentFromAuth = async ( userAuth, additionalDocument =
               }
               catch(error)
               {
-                  console.log("Error creating the user ". error.message)
+
+                  // console.log("Error creating the user "
+                  //     . error.message)
               }
           }
 

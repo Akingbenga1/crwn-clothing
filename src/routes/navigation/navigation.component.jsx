@@ -1,7 +1,7 @@
 import {Link, Outlet} from "react-router-dom";
 
 import {ReactComponent as CrownLogo} from  '../../assets/crown.svg'
-import './navigation.styles.scss'
+import {LogoContainer, NavigationContainer, NavLink, NavLinks} from './navigation.styles'
 
 import CartIcon from '../../components/cart-icon/cart-icon.component'
 import {UserContext} from "../../contexts/user.context";
@@ -18,21 +18,22 @@ const Navigation = () => {
     console.log("currentUser ====>", currentUser);
     return (
         <>
-            <div className='navigation'>
-                <Link className='logo-container' to='/'>
+            <NavigationContainer>
+                <LogoContainer to='/'>
                     <CrownLogo />
-                </Link>
+                </LogoContainer>
 
-                <div className='links-container'>
-                   <Link className='nav-link' to='/shop'>Shop</Link>
+                <NavLinks>
+                   <NavLink to='/shop'>Shop</NavLink>
                     {
                         currentUser ?
-                            ( <span  onClick={signOutUser} className='nav-link'> SIGN OUT </span> )
-                            : (  <Link className='nav-link' to='/auth'>Sign In </Link> )}
+                            ( <NavLink as='span'  onClick={signOutUser} > SIGN OUT </NavLink> )
+                            : (  <NavLink to='/auth'>Sign In </NavLink> )
+                    }
                     <CartIcon />
-                </div>
-              { isCartOpen &&  <CartDropdown /> }  
-            </div>
+                </NavLinks>
+              { isCartOpen &&  <CartDropdown /> }
+            </NavigationContainer>
             <Outlet />
         </>
     );

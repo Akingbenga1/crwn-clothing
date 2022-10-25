@@ -1,7 +1,7 @@
 import {useContext, useState} from "react";
 import {createAuthUserWithEmailAndPassword, createUserDocumentFromAuth} from "../../utils/firebase/firebase.utils";
 import FormInput from "../form-input/form-input.component";
-import Button from "../button/button.component";
+import Button, {BUTTON_TYPE_CLASSES} from "../button/button.component";
 
 import "./sign-up.styles.scss";
 import {UserContext} from "../../contexts/user.context";
@@ -108,7 +108,7 @@ const SignUpForm = () =>
                 <Button type='submit' >
                     Sign Up
                 </Button>
-                <Button buttonType='google' type='submit' >
+                <Button buttonType={BUTTON_TYPE_CLASSES.google} type='submit' >
                     Sign Up with Google
                 </Button>
             </form>
