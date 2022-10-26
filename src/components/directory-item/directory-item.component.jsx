@@ -7,7 +7,7 @@ const DirectoryItem = ({category}) =>
 {
     const navigate =  useNavigate();
 
-    const onNavigateHandler =  () => navigate(route);
+    const onNavigateHandler =  () => navigate(category.route);
     return (
         <DirectoryItemContainer
             key={category.id}
