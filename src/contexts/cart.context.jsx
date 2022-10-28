@@ -89,7 +89,8 @@ const cartReducer = (state, action) => {
 
 export const CartProvider = ({children}) =>
 {
-    const [{cartItems, cartCount, cartTotal, isCartOpen}, dispatch] = useReducer(cartReducer, INITIAL_STATE);
+    const [{cartItems, cartCount, cartTotal, isCartOpen, setCartItems}, dispatch] = useReducer(cartReducer, INITIAL_STATE);
+
     // const [isCartOpen, setIsCartOpen] = useState(false);
     // const [cartItems, setCartItems] = useState([]);
     // const [cartCount, setCartCount] = useState(0);
@@ -125,22 +126,22 @@ export const CartProvider = ({children}) =>
 
     }
 
+
     const addItemToCart = (productToAdd) =>
     {
-       const newCartItems = addCartItem(cartItems, productToAdd);
-        updateCartItemReducer(newCartItems);
+        setCartItems(addCartItem(cartItems, productToAdd));
     }
 
     const removeItemToCart = (cartItemToRemove) =>
     {
-        const newCartItems = removeCartItem(cartItems, cartItemToRemove);
-        updateCartItemReducer(newCartItems);
+        setCartItems(removeCartItem(cartItems, cartItemToRemove));
+
     }
 
     const clearItemFromCart = (cartItemToClear) =>
     {
-        const newCartItems = clearCartItem(cartItems, cartItemToClear);
-        updateCartItemReducer(newCartItems);
+        setCartItems(clearCartItem(cartItems, cartItemToClear));
+
     }
 
     const setIsCartOpen = (bool) =>

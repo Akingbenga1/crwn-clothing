@@ -98,7 +98,7 @@ export const CartProvider = ({children}) =>
 
     const addItemToCart = (productToAdd) =>
     {
-       const new(addCartItem(cartItems, productToAdd));
+       setCartItems(addCartItem(cartItems, productToAdd));
     }
 
     const removeItemToCart = (cartItemToRemove) =>
