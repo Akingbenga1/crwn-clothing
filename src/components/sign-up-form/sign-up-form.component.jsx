@@ -5,6 +5,8 @@ import Button, {BUTTON_TYPE_CLASSES} from "../button/button.component";
 
 import "./sign-up.styles.scss";
 import {UserContext} from "../../contexts/user.context";
+import {useDispatch} from "react-redux";
+import {signUpStart} from "../../store/user/user.action";
 
 
 const SignUpForm = () =>
@@ -18,18 +20,58 @@ const SignUpForm = () =>
 
     const [formFields, setFormFields] = useState(defaultFormFields);
     const {displayName, email, password, confirmPassword}  = formFields;
+    const dispatch  = useDispatch();
 
     console.log(formFields);
     const resetFormFields = () =>
     {
         setFormFields(defaultFormFields);
     }
+
     const handleChange  = (event ) =>
     {
                 const  {name, value} =  event.target;
 
                 setFormFields({...formFields, [name] : value});
     };
+
+    // const handleSubmit  = async (event ) =>
+    // {
+    //     event.preventDefault();
+    //
+    //     if(password !== confirmPassword )
+    //     {
+    //         alert("Password do not match");
+    //         return;
+    //     }
+    //
+    //     try
+    //     {
+    //         const {user} =  await createAuthUserWithEmailAndPassword(email, password);
+    //         console.log(user);
+    //
+    //
+    //
+    //         await createUserDocumentFromAuth(user, {displayName })
+    //
+    //         resetFormFields();
+    //     }
+    //     catch(error)
+    //     {
+    //         console.log(error);
+    //
+    //         if(error.code === "auth/already-in-use")
+    //         {
+    //            alert("Cannot create user, email already in use.");
+    //         }
+    //         else
+    //         {
+    //             console.log("User creation encountered an error ");
+    //         }
+    //     }
+    //
+    //
+    // };
 
     const handleSubmit  = async (event ) =>
     {
@@ -43,13 +85,7 @@ const SignUpForm = () =>
 
         try
         {
-            const {user} =  await createAuthUserWithEmailAndPassword(email, password);
-            console.log(user);
-
-
-
-            await createUserDocumentFromAuth(user, {displayName })
-
+            dispatch(signUpStart(email, password, displayName ))
             resetFormFields();
         }
         catch(error)

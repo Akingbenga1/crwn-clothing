@@ -9,6 +9,7 @@ import {createUserDocumentFromAuth, getCurrentUser, onAuthStateChangeListener} f
 import {checkUserSession, setCurrentUser} from "./store/user/user.action";
 import {useDispatch} from "react-redux";
 import {useEffect} from "react";
+import PaymentForm from "./components/payment-form/payment-form.component";
 // const Shop = () => <h1> Hi Gbenga</h1>;
 
 function App() {
@@ -33,15 +34,20 @@ function App() {
 
 
   return (
-      <Routes>
-          <Route path='/' element={ <Navigation  />} >
-              <Route index  element={ <Home  />} />
-              <Route path='shop/*' element={ <Shop  />} />
-              <Route path='auth' element={<Authentication  />} />
-              <Route path='checkout' element={<Checkout  />} />
-          </Route>
 
-      </Routes>
+      <>
+          <Routes>
+              <Route path='/' element={ <Navigation  />} >
+                  <Route index  element={ <Home  />} />
+                  <Route path='shop/*' element={ <Shop  />} />
+                  <Route path='auth' element={<Authentication  />} />
+                  <Route path='checkout' element={<Checkout  />} />
+              </Route>
+
+          </Routes>
+          <PaymentForm />
+      </>
+
   );
 }
 
