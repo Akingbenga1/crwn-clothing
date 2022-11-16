@@ -14,7 +14,6 @@ import {useDispatch} from "react-redux";
 
 const SignInForm = () =>
 {
-
     const dispatch = useDispatch();
     const defaultFormFields =   {
                                 email: '',
@@ -24,7 +23,7 @@ const SignInForm = () =>
     const [formFields, setFormFields] = useState(defaultFormFields);
     const { email, password}  = formFields;
 
-    console.log(formFields);
+    console.log("formFields ===> ",  formFields);
     const resetFormFields = () =>
     {
         setFormFields(defaultFormFields);
@@ -38,18 +37,15 @@ const SignInForm = () =>
 
     const signInWithGoogle = async () =>
     {
-        dispatch(googleSignInStart());
-    }
-
-
-    try
-    {
-        dispatch(emailSignInStart(email, password));
-        resetFormFields()
-    }
-    catch(e)
-    {
-        console.log("User sign in failed", e);
+        try
+        {
+            dispatch(googleSignInStart());
+            resetFormFields();
+        }
+        catch(e)
+        {
+            console.log("User sign in failed", e);
+        }
     }
 
     const handleChange  = (event ) =>
@@ -63,28 +59,39 @@ const SignInForm = () =>
     {
         event.preventDefault();
 
-        try
-        {
-            const response = await signInAuthUserWithEmailAndPassword(email,password);
-            console.log(response);
-            // setCurrentUser(response.user);
-            resetFormFields();
-        }
-        catch(error)
-        {
-            console.log(error);
-            switch(error.code)
-            {
-                case 'auth/wrong-password':
-                    alert('incorrect password for email');
-                    break;
-                case 'auth/user-not-found':
-                    alert('no user associated with this email.');
-                    break;
-                default:
-                    console.log(error);
-            }
-        }
+        // try
+        // {
+        //     const response = await signInAuthUserWithEmailAndPassword(email,password);
+        //     console.log(response);
+        //     // setCurrentUser(response.user);
+        //     resetFormFields();
+        // }
+        // catch(error)
+        // {
+        //     console.log(error);
+        //     switch(error.code)
+        //     {
+        //         case 'auth/wrong-password':
+        //             alert('incorrect password for email');
+        //             break;
+        //         case 'auth/user-not-found':
+        //             alert('no user associated with this email.');
+        //             break;
+        //         default:
+        //             console.log(error);
+        //     }
+        // }
+
+
+        // try
+        // {
+        //     dispatch(emailSignInStart(email, password));
+        //     resetFormFields()
+        // }
+        // catch(e)
+        // {
+        //     console.log("User sign in failed", e);
+        // }
     };
 
     return (

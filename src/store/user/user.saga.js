@@ -42,9 +42,12 @@ export function* getSnapShotFromUserAuth(userAuth, additionalDetails)
     try
     {
         const userSnapshot = yield call( createUserDocumentFromAuth, userAuth, additionalDetails);
-        yield put(signInSuccess({id: userSnapshot.id}, ...userSnapshot.data()))
-        console.log(userSnapshot);
-        console.log(userSnapshot.data());
+        console.log("userSnapshot.data()  ====> " , userSnapshot.data());
+
+        let snap = userSnapshot.data();
+        yield put(signInSuccess({id: userSnapshot.id, ...snap }))
+        console.log("userSnapshot ====> ", userSnapshot);
+
     }
     catch(error)
     {

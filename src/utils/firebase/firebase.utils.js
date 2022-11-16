@@ -74,7 +74,11 @@ export const getCategoriesAndDocuments = async () =>
 
     const querySnapShot =  await getDocs(q);
 
-    return querySnapShot.docs.map(( docSnapshot) =>  docSnapshot.data() );
+    return querySnapShot.docs.map(( docSnapshot) =>
+    {
+        console.log("docSnapshot ===>  ", docSnapshot.data());
+       return  docSnapshot.data()
+    } );
 }
 
 export const createUserDocumentFromAuth = async ( userAuth, additionalDocument = {} ) => {
@@ -84,7 +88,7 @@ export const createUserDocumentFromAuth = async ( userAuth, additionalDocument =
           console.log("userDocRef ==> ", userDocRef);
 
           const userSnapShot = await getDoc(userDocRef);
-          // console.log(userSnapShot);
+          console.log("userSnapShot ====> ", userSnapShot);
 
           if(!userSnapShot.exists())
           {
@@ -104,8 +108,8 @@ export const createUserDocumentFromAuth = async ( userAuth, additionalDocument =
               catch(error)
               {
 
-                  // console.log("Error creating the user "
-                  //     . error.message)
+                  console.log("Error creating the user ===>  "
+                      , error.message)
               }
           }
 
@@ -138,7 +142,6 @@ export const getCurrentUser =  () =>  {
 
                 unsubscribe();
                 resolve(userAuth);
-
     },
             reject)
     })
